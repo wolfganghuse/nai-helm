@@ -4,3 +4,6 @@ useExistingNFS: false
 storage:
   storageClass: default-storageclass
   accessModes: ReadWriteOnce
+nfs:
+  server: 10.54.78.48
+  export: /llm

@@ -17,5 +17,5 @@ spec:
         requests:
           cpu: "8"
           memory: 32Gi
-          nvidia.com/gpu: "1"
+          nvidia.com/gpu: "1"    
       storageUri: pvc://{{ .Release.Name }}-claim/{{ .Values.model }}
