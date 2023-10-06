@@ -1,0 +1,41 @@
+{{- if not .Values.use-existing-nfs }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{.Release.Name}}"
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/managed-by: {{.Release.Service | quote }}
+    app.kubernetes.io/instance: {{.Release.Name | quote }}
+    helm.sh/chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+  annotations:
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  template:
+    metadata:
+      name: "{{.Release.Name}}"
+      labels:
+        app.kubernetes.io/managed-by: {{.Release.Service | quote }}
+        app.kubernetes.io/instance: {{.Release.Name | quote }}
+        helm.sh/chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    spec:
+      containers:
+      - name: model-downloader
+        image: quay.io/wolfgangntnx/nai-utils:0.0.3
+        command: ["/bin/bash", "-c"]
+        args:
+          - |
+            if [ ! -f /mnt/llm/phi-1_5/model-store/phi-1_5.mar ]; then
+              python3 llm/download.py --model_name phi-1_5 --output /mnt/llm
+            fi
+        volumeMounts:
+        - name: model-pvc
+          mountPath: /mnt/llm
+      restartPolicy: OnFailure
+      volumes:
+      - name: model-pvc
+        persistentVolumeClaim:
+          claimName: model-claim
+{{- end }}

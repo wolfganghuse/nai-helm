@@ -1,0 +1,22 @@
+{{- if not .Values.use-existing-nfs }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-claim
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/managed-by: {{.Release.Service | quote }}
+    app.kubernetes.io/instance: {{.Release.Name | quote }}
+    helm.sh/chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+  annotations:
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "-10"
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  storageClassName: {{ .Values.storage.storage-class }}
+  accessModes:
+    - {{ .Values.storage.accessModes }}
+  resources:
+    requests:
+      storage: 50Gi
+{{- end }}
