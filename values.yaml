@@ -2,5 +2,5 @@ model: phi-1_5
 revision: 111
 useExistingNFS: false
 storage:
-  storage-class: nutanix-volume
+  storageClass: default-storageclass
   accessModes: ReadWriteOnce

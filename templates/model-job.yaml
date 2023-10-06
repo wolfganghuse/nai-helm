@@ -27,8 +27,8 @@ spec:
         command: ["/bin/bash", "-c"]
         args:
           - |
-            if [ ! -f /mnt/llm/phi-1_5/model-store/phi-1_5.mar ]; then
-              python3 llm/download.py --model_name phi-1_5 --output /mnt/llm
+            if [ ! -f /mnt/llm/{{ .Values.model }}/model-store/{{ .Values.model }}.mar ]; then
+              python3 llm/download.py --model_name {{ .Values.model }} --output /mnt/llm
             fi
         volumeMounts:
         - name: model-pvc
@@ -37,5 +37,5 @@ spec:
       volumes:
       - name: model-pvc
         persistentVolumeClaim:
-          claimName: model-claim
+          claimName: {{ .Release.Name }}-claim
 {{- end }}
