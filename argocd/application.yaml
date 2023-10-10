@@ -13,8 +13,7 @@ spec:
       valueFiles:
         - values.yaml
       values: |
-        ingress:
-          enabled: true
+        useExistingNFS: false
   destination:
     server: https://kubernetes.default.svc
     namespace: llm1 
