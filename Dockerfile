@@ -9,4 +9,4 @@ RUN curl -LO https://github.com/nutanix/nai-llm-k8s/archive/refs/tags/v0.1-rc3.t
 RUN tar -xvf v0.1-rc3.tar.gz  --strip-components=1
 RUN pip install -r llm/requirements.txt
 
-ENTRYPOINT ["download_wrapper.sh"]
+ENTRYPOINT ["/nai-utils/download-wrapper.sh"]
