@@ -4,13 +4,13 @@ kind: PersistentVolumeClaim
 metadata:
   name: {{ .Release.Name }}-claim
   namespace: {{ .Release.Namespace }}
-  # labels:
-  #   app.kubernetes.io/managed-by: {{.Release.Service | quote }}
-  #   app.kubernetes.io/instance: {{.Release.Name | quote }}
-  #   helm.sh/chart: "{{.Chart.Name}}-{{.Chart.Version}}"
-  # annotations:
-    # "helm.sh/hook": pre-install
-    # "helm.sh/hook-weight": "-10"
+  labels:
+    app.kubernetes.io/managed-by: {{.Release.Service | quote }}
+    app.kubernetes.io/instance: {{.Release.Name | quote }}
+    helm.sh/chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+  annotations:
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "-10"
     # Need to check on ordering ?? "helm.sh/hook-delete-policy": hook-succeeded
 spec:
   storageClassName: {{ .Values.storage.storageClass }}
@@ -26,13 +26,13 @@ kind: PersistentVolume
 metadata:
   name: {{ .Release.Name }}-volume
   labels:
-    # app.kubernetes.io/managed-by: {{.Release.Service | quote }}
-    # app.kubernetes.io/instance: {{.Release.Name | quote }}
-    # helm.sh/chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    app.kubernetes.io/managed-by: {{.Release.Service | quote }}
+    app.kubernetes.io/instance: {{.Release.Name | quote }}
+    helm.sh/chart: "{{.Chart.Name}}-{{.Chart.Version}}"
     storage: nfs
-  # annotations:
-  #   "helm.sh/hook": pre-install
-  #   "helm.sh/hook-weight": "-10"
+  annotations:
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "-10"
 spec:
   accessModes:
   - ReadWriteMany
@@ -49,13 +49,13 @@ kind: PersistentVolumeClaim
 metadata:
   name: {{ .Release.Name }}-claim
   namespace: {{ .Release.Namespace }}
-  # labels:
-  #   app.kubernetes.io/managed-by: {{.Release.Service | quote }}
-  #   app.kubernetes.io/instance: {{.Release.Name | quote }}
-  #   helm.sh/chart: "{{.Chart.Name}}-{{.Chart.Version}}"
-  # annotations:
-  #   "helm.sh/hook": pre-install
-  #   "helm.sh/hook-weight": "-10"
+  labels:
+    app.kubernetes.io/managed-by: {{.Release.Service | quote }}
+    app.kubernetes.io/instance: {{.Release.Name | quote }}
+    helm.sh/chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+  annotations:
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "-10"
 spec:
   accessModes:
   - ReadWriteMany
