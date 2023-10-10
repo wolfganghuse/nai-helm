@@ -4,14 +4,14 @@ kind: Job
 metadata:
   name: "{{.Release.Name}}"
   namespace: {{ .Release.Namespace }}
-  labels:
-    app.kubernetes.io/managed-by: {{.Release.Service | quote }}
-    app.kubernetes.io/instance: {{.Release.Name | quote }}
-    helm.sh/chart: "{{.Chart.Name}}-{{.Chart.Version}}"
-  annotations:
-    "helm.sh/hook": pre-install
-    "helm.sh/hook-weight": "-5"
-    "helm.sh/hook-delete-policy": hook-succeeded
+  # labels:
+  #   app.kubernetes.io/managed-by: {{.Release.Service | quote }}
+  #   app.kubernetes.io/instance: {{.Release.Name | quote }}
+  #   helm.sh/chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+  # annotations:
+  #   "helm.sh/hook": pre-install
+  #   "helm.sh/hook-weight": "-5"
+  #   "helm.sh/hook-delete-policy": hook-succeeded
 spec:
   template:
     metadata:
