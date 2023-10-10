@@ -4,13 +4,6 @@ metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Release.Namespace }}
 spec:
-  initContainers:
-    - name: wait-for-model-downloader
-      image: ghcr.io/groundnuty/k8s-wait-for:v1.6
-      imagePullPolicy: Always
-      args:
-        - "job"
-        - "{{.Release.Name}}"
   predictor:
     model:
       modelFormat:
@@ -25,4 +18,4 @@ spec:
           cpu: "8"
           memory: 32Gi
           nvidia.com/gpu: "1"    
-      storageUri: pvc://{{ .Release.Name }}-claim/{{ .Values.model }}
+      storageUri: ntnx://{{ .Values.model }}
