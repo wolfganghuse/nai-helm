@@ -4,6 +4,13 @@ metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Release.Namespace }}
 spec:
+  initContainers:
+    - name: wait-for-model-downloader
+      image: ghcr.io/groundnuty/k8s-wait-for:v1.6
+      imagePullPolicy: Always
+      args:
+        - "job"
+        - "{{.Release.Name}}"
   predictor:
     model:
       modelFormat:
