@@ -7,4 +7,5 @@ output=$2
 model=${modelarg//ntnx:\/\//}
 
 python3 llm/download.py --model_name $model --output $output
-ln -s $model .
+ln -s /mnt/models/$model/config /mnt/models/config
+ln -s /mnt/models/$model/modelstore /mnt/models/modelstore
