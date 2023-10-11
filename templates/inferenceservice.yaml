@@ -18,4 +18,9 @@ spec:
           cpu: "8"
           memory: 32Gi
           nvidia.com/gpu: "1"    
+      {{- if not .Values.useExistingNFS }}
+      storageUri: ntnx://{{ .Values.model }}
+      {{- end }}
+      {{- if .Values.useExistingNFS }}
       storageUri: pvc://{{ .Release.Name }}-claim/{{ .Values.model }}
+      {{- end }}
