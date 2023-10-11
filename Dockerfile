@@ -7,7 +7,7 @@ RUN curl -LO https://github.com/nutanix/nai-llm-k8s/archive/refs/tags/v0.1-rc3.t
 RUN tar -xvf v0.1-rc3.tar.gz  --strip-components=1
 RUN mkdir /install
 WORKDIR /install
-RUN pip install  --prefix=/install -r /nai-utils/llm/requirements.txt
+RUN pip install  --prefix=/install $(grep -ivE "kubernetes" /nai-utils/llm/requirements.txt)
 
 FROM python:3.10-alpine
 COPY --from=builder /install /usr/local
