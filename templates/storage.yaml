@@ -1,17 +1,3 @@
-{{- if not .Values.useExistingNFS }}
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: {{ .Release.Name }}-claim
-  namespace: {{ .Release.Namespace }}
-spec:
-  storageClassName: {{ .Values.storage.storageClass }}
-  accessModes:
-    - {{ .Values.storage.accessModes }}
-  resources:
-    requests:
-      storage: 50Gi
-{{- end }}
 {{- if .Values.useExistingNFS }}
 apiVersion: v1
 kind: PersistentVolume
