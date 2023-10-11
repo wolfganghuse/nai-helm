@@ -6,6 +6,15 @@ metadata:
 spec:
   predictor:
     model:
+      env:
+      - name: TS_SERVICE_ENVELOPE
+        value: body
+      - name: TS_NUMBER_OF_GPU
+        value: "1"
+      - name: NAI_TEMPERATURE
+      - name: NAI_REP_PENALTY
+      - name: NAI_TOP_P
+      - name: NAI_MAX_TOKENS
       modelFormat:
         name: pytorch
       protocolVersion: v2
