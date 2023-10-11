@@ -1,5 +1,4 @@
-FROM python:3.10-slim as base
-FROM base as builder
+FROM python:3.10-slim as builder
 RUN apt update
 RUN apt install gcc curl -y
 RUN mkdir /nai-utils
@@ -10,7 +9,7 @@ RUN mkdir /install
 WORKDIR /install
 RUN pip install  --prefix=/install -r /nai-utils/llm/requirements.txt
 
-FROM base
+FROM python:3.10-alpine
 COPY --from=builder /install /usr/local
 COPY --from=builder /nai-utils /nai-utils
 
