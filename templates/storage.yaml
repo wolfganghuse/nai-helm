@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: {{ .Release.Name }}-volume
+  name: {{ .Release.Namespace }}-{{ .Release.Name }}-volume
   labels:
     storage: nfs
 spec:
@@ -32,5 +32,5 @@ spec:
       storage: nfs
   storageClassName: ""
   volumeMode: Filesystem
-  volumeName: {{ .Release.Name }}-volume
+  volumeName: {{ .Release.Namespace }}-{{ .Release.Name }}-volume
 {{- end }}
