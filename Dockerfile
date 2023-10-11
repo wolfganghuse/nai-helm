@@ -12,7 +12,7 @@ RUN pip install  --prefix=/install $(grep -ivE "kubernetes" /nai-utils/llm/requi
 FROM python:3.10-alpine
 COPY --from=builder /install /usr/local
 COPY --from=builder /nai-utils /nai-utils
-
+COPY download-wrapper.sh /nai-utils/download-wrapper.sh
 WORKDIR /nai-utils
 
 ENTRYPOINT ["/nai-utils/download-wrapper.sh"]
