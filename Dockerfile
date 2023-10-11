@@ -1,4 +1,6 @@
-FROM python:3.10-slim as builder
+FROM python:3.10-slim as base
+FROM base as builder
+
 RUN apt update
 RUN apt install gcc curl -y
 RUN mkdir /nai-utils
@@ -9,7 +11,7 @@ RUN mkdir /install
 WORKDIR /install
 RUN pip install  --prefix=/install $(grep -ivE "kubernetes" /nai-utils/llm/requirements.txt)
 
-FROM python:3.10-alpine
+FROM base
 COPY --from=builder /install /usr/local
 COPY --from=builder /nai-utils /nai-utils
 COPY download-wrapper.sh /nai-utils/download-wrapper.sh
