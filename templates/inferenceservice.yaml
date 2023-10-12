@@ -33,3 +33,6 @@ spec:
       {{- if .Values.useExistingNFS }}
       storageUri: pvc://{{ .Release.Name }}-claim/{{ .Values.model }}
       {{- end }}
+    {{- if .Values.hfToken }}
+    serviceAccountName: {{ .Release.Namespace }}-{{ .Release.Name }}-sa
+    {{- end }}
