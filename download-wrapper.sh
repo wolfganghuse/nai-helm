@@ -13,7 +13,7 @@ echo "Model Revision: $MODEL_REVISION"
 if [ -z "$MODEL_REVISION" ]; then
     echo "no revision configured, using default value from model_config.json"
     python3 llm/download.py --model_name $MODEL_NAME --output $output
-    MODEL_REVISION=$(jq -r --arg model "$MODEL_NAME" '.[$MODEL_NAME].repo_version' llm/model_config.json)
+    MODEL_REVISION=$(jq -r --arg model "$MODEL_NAME" '.[$model].repo_version' llm/model_config.json)
     echo "Model Revision: $MODEL_REVISION"
 else
     python3 llm/download.py --repo_version=$MODEL_REVISION --model_name $MODEL_NAME --output $output
