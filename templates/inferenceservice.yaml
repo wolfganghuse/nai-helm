@@ -28,7 +28,7 @@ spec:
           memory: 32Gi
           nvidia.com/gpu: "1"    
       {{- if not .Values.useExistingNFS }}
-      storageUri: ntnx://{{ .Values.model }}
+      storageUri: ntnx://{{ .Values.model }}/{{ .Values.revision }}
       {{- end }}
       {{- if .Values.useExistingNFS }}
       storageUri: pvc://{{ .Release.Name }}-claim/{{ .Values.model }}
