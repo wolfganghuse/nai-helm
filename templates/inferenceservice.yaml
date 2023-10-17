@@ -31,5 +31,5 @@ spec:
       storageUri: ntnx://{{ .Values.model }}/{{ .Values.revision }}
       {{- end }}
       {{- if .Values.useExistingNFS }}
-      storageUri: pvc://{{ .Release.Name }}-claim/{{ .Values.model }}
+      storageUri: pvc://{{ .Release.Name }}-claim/{{ .Values.model }}/{{ .Values.revision }}
       {{- end }}
