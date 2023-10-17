@@ -1,5 +1,5 @@
 model: phi-1_5
-revision: 111
+revision:
 useExistingNFS: false
 nfs:
   server: 10.54.78.48
