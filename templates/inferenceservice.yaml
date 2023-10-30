@@ -12,9 +12,13 @@ spec:
       - name: TS_NUMBER_OF_GPU
         value: "1"
       - name: NAI_TEMPERATURE
+        value: "{{ .Values.temperature }}"
       - name: NAI_REP_PENALTY
+        value: "{{ .Values.repPenalty }}"
       - name: NAI_TOP_P
+        value: "{{ .Values.topP }}"
       - name: NAI_MAX_TOKENS
+        value: "{{ .Values.maxTokens }}"
       modelFormat:
         name: pytorch
       protocolVersion: v2
@@ -31,5 +35,5 @@ spec:
       storageUri: ntnx://{{ .Values.model }}/{{ .Values.revision }}
       {{- end }}
       {{- if .Values.useExistingNFS }}
-      storageUri: pvc://{{ .Release.Name }}-claim/{{ .Values.model }}
+      storageUri: pvc://{{ .Release.Name }}-claim/{{ .Values.model }}/{{ .Values.revision }}
       {{- end }}
