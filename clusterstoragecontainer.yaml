@@ -5,7 +5,7 @@ metadata:
 spec:
   container:
     name: storage-initializer
-    image: quay.io/wolfgangntnx/nai-utils:0.1-rc4-4
+    image: quay.io/wolfgangntnx/nai-utils:0.2
     resources:
       requests:
         memory: 100Mi

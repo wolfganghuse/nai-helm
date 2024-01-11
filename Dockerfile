@@ -5,8 +5,8 @@ RUN apt update
 RUN apt install gcc curl -y
 RUN mkdir /nai-utils
 WORKDIR /nai-utils
-RUN curl -LO https://github.com/nutanix/nai-llm-k8s/archive/refs/tags/v0.1-rc4.tar.gz
-RUN tar -xvf v0.1-rc4.tar.gz  --strip-components=1
+RUN curl -LO https://github.com/nutanix/nai-llm-k8s/archive/refs/tags/v0.2.tar.gz
+RUN tar -xvf v0.2.tar.gz  --strip-components=1
 RUN mkdir /install
 WORKDIR /install
 RUN pip install  --prefix=/install $(grep -ivE "kubernetes" /nai-utils/llm/requirements.txt)
