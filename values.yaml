@@ -1,4 +1,4 @@
-model: phi-1_5
+model: gpt2
 revision:
 temperature: 0.2
 repPenalty: 1.75
